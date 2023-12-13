@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="style.css" />
+    <style>
+        body {
+          background-color: #0f0f0f;
+          color: #fff;
+          font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+          margin: 0;
+          padding: 0;
+        }
+  
+        nav {
+          background-color: #4b0082; /* Dark purple background color for the navbar */
+          padding: 10px;
+          text-align: center;
+        }
+  
+        nav a {
+          color: #fff;
+          text-decoration: none;
+          margin: 0 15px;
+          font-weight: bold;
+          font-size: 16px;
+        }
+  
+        nav a:hover {
+          text-decoration: underline;
+        }
+  
+        .container {
+          text-align: center;
+          margin-top: 50px; /* Add margin to create space between navbar and content */
+        }
+  
+        h1 {
+          font-size: 2em;
+          margin-bottom: 20px;
+        }
+  
+        #music-section {
+          background-color: #1f1f1f;
+          padding: 20px;
+          border-radius: 10px;
+          box-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
+          margin-top: 20px;
+        }
+  
+        #result-container {
+          margin-bottom: 20px;
+        }
+  
+        #file-input {
+          display: none; /* Hide the file input visually */
+        }
+  
+        label[for="file-input"] {
+          background-color: #3498db;
+          color: #fff;
+          padding: 10px 15px;
+          border-radius: 5px;
+          cursor: pointer;
+          transition: background-color 0.3s ease;
+        }
+  
+        label[for="file-input"]:hover {
+          background-color: #2980b9;
+        }
+  
+        button {
+          background-color: #2ecc71;
+          color: #fff;
+          padding: 10px 20px;
+          font-size: 16px;
+          cursor: pointer;
+          border: none;
+          border-radius: 5px;
+          transition: background-color 0.3s ease;
+        }
+  
+        button:hover {
+          background-color: #27ae60;
+        }
+      </style>
+    <script src="https://www.gstatic.com/firebasejs/9.8.4/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.8.4/firebase-firestore-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.8.4/firebase-auth-compat.js"></script>
+  </head>
+  <body>
+    <div class="container">
+
+        <div class="container">
+            <nav>
+              <a href="dashboard.html">Home</a>
+              <a href="feedback.html">Feedback</a>
+              <!-- Update the href attribute with the appropriate link -->
+              <a href="#" onclick="logout()">Logout</a>
+            </nav>
+          </div>
+      
+          <div class="container">
+            <h1>Welcome to the Dashboard</h1>
+      
+            <!-- Music identification section -->
+            <div id="music-section">
+              <div id="result-container">
+                <!-- Display identification results here -->
+              </div>
+              <label for="file-input">Choose a file</label>
+              <input type="file" id="file-input" accept="audio/*" />
+              <button onclick="identifyMusic()">Identify Music</button>
+            </div>
+          </div>
+
+    </div>
+    
+
+    <script src="app.js"></script>
+  </body>
+</html>

@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>User Feedback</title>
+    <link rel="stylesheet" href="style.css" />
+    <style>
+      body {
+        background-color: #0f0f0f;
+        color: #fff;
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+      }
+      nav {
+        background-color: #4b0082; /* Dark purple background color for the navbar */
+        padding: 10px;
+        text-align: center;
+      }
+
+      nav a {
+        color: #fff;
+        text-decoration: none;
+        margin: 0 15px;
+        font-weight: bold;
+        font-size: 16px;
+      }
+
+      nav a:hover {
+        text-decoration: underline;
+      }
+      .container {
+        text-align: center;
+      }
+
+      .welcome-message {
+        font-size: 1.2em;
+        margin-bottom: 20px;
+      }
+
+      label {
+        display: block;
+        font-weight: bolder;
+        margin: 10px 0 5px;
+      }
+
+      textarea {
+        width: 100%;
+        padding: 8px 5px;
+        border-radius: 5px;
+        margin-bottom: 10px;
+      }
+
+      button {
+        border: none;
+        background-color: blueviolet;
+        width: 100%;
+        padding: 10px 8px;
+        color: white;
+        font-weight: bolder;
+        text-transform: uppercase;
+        cursor: pointer;
+        margin: 9px 0px;
+      }
+
+      h2 {
+        font-size: 1.5em;
+        margin-bottom: 10px;
+      }
+
+      #feedbackList {
+        list-style-type: none;
+        padding: 0;
+      }
+
+      #feedbackList li {
+        margin-bottom: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+    <div class="container">
+      <nav>
+        <a href="dashboard.html">Home</a>
+        <a href="feedback.html">Feedback</a>
+        <!-- Update the href attribute with the appropriate link -->
+        <a href="#" onclick="logout()">Logout</a>
+      </nav>
+    </div>
+    <div class="container" id="app">
+      <h1>User Feedback</h1>
+      <p v-if="user" class="welcome-message">Welcome, {{ user.email }}!</p>
+      <p>
+        We value your feedback! Please share your thoughts to help us improve.
+      </p>
+
+      <form @submit.prevent="submitFeedback">
+        <label for="feedback">Feedback:</label>
+        <textarea
+          v-model="feedback"
+          id="feedback"
+          name="feedback"
+          rows="4"
+          required
+        ></textarea>
+
+        <button type="submit">Submit Feedback</button>
+      </form>
+
+      <div v-if="isAdmin">
+        <h2>Admin Panel</h2>
+        <ul id="feedbackList">
+          <li v-for="item in feedbackList" :key="item.id">
+            {{ item.feedback }} - {{ item.email }}
+            <span v-if="item.reply"> | Admin Reply: {{ item.reply }}</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.8.4/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.8.4/firebase-firestore-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.8.4/firebase-auth-compat.js"></script>
+    <script src="app.js"></script>
+  </body>
+</html>
